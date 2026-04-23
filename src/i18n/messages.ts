@@ -1,0 +1,449 @@
+export const messages = {
+  ru: {
+    nav: {
+      home: 'Главная',
+      about: 'Обо мне',
+      experience: 'Опыт',
+      skills: 'Навыки',
+      education: 'Образование',
+      contacts: 'Контакты',
+    },
+    common: {
+      theme: 'Тема',
+      language: 'Язык',
+      light: 'Светлая',
+      dark: 'Тёмная',
+      downloadPdf: 'Скачать резюме (PDF)',
+      openSite: 'Открыть сайт',
+    },
+    home: {
+      title: 'Andakov Dilmukhan',
+      role: 'Frontend‑разработчик',
+      lead:
+        'Фронтенд‑разработчик с 5+ годами опыта в создании сложных веб‑приложений на Vue, JavaScript и Nuxt. Участвовал в 20+ проектах. Могу проектировать архитектуру фронтенд‑проекта.',
+      quick: {
+        locationLabel: 'Город',
+        location: 'Астана, Казахстан',
+        statusLabel: 'Статус',
+        ready: 'Готов к переезду и командировкам',
+      },
+      projects: {
+        title: 'Мои работы',
+        lead: 'Несколько живых проектов. Кликайте — откроется сайт.',
+        items: [
+          {
+            title: 'ENU — главный сайт',
+            subtitle: 'Адаптивная вёрстка, динамические страницы',
+            tags: ['Vue', 'Nuxt', 'PrimeVue'],
+            href: 'https://enu.kz/kz',
+            bg: '/44.jpg',
+          },
+          {
+            title: 'Библиотека ENU',
+            subtitle: 'Интеграция аналитики, поддержка и доработки',
+            tags: ['Vue', 'Nuxt'],
+            href: 'https://lib.enu.kz/kz',
+            bg: '/55.jpg',
+          },
+          {
+            title: 'e-SQO',
+            subtitle: 'Интерфейс по Figma + админка',
+            tags: ['Angular', 'TypeScript'],
+            href: 'https://e-sqo.kz',
+            bg: '/66.jpg',
+          },
+          {
+            title: 'Geo Shymkent',
+            subtitle: 'Админ-панель и поддержка',
+            tags: ['Angular', 'Material UI'],
+            href: 'https://geo-shym.kz',
+            bg: '/77.jpg',
+          },
+        ],
+      },
+    },
+    about: {
+      title: 'Обо мне',
+      lead:
+        'Делаю быстрые, аккуратные интерфейсы и умею доводить продукт до стабильного релиза: от вёрстки по Figma до интеграции с API и поддержки.',
+      factsTitle: 'Кратко',
+      facts: {
+        age: '29 лет (01.05.1996)',
+        citizenship: 'Гражданство: Казахстан',
+        format: 'Формат: офис / удалённо',
+      },
+    },
+    experience: {
+      title: 'Опыт работы',
+      items: [
+        {
+          company: 'Евразийский национальный университет им. Л.Н. Гумилева',
+          period: 'Ноябрь 2022 — настоящее время (3 года 6 месяцев)',
+          role: 'Frontend‑разработчик',
+          bullets: [
+            'Участвовал в создании сайта `enu.kz/kz` с нуля, адаптивная вёрстка по макету Figma.',
+            'Сайт содержит около 3000 динамических страниц.',
+            'Поддержка фронта дочерних сайтов ЕНУ (16 факультетов и др.).',
+            'Подключил Яндекс.Метрику к `lib.enu.kz/kz`.',
+            'Технологии: PrimeVue, Vue 3, Nuxt 3, JavaScript.',
+            'Работаю в цифровой платформе `smart.enu.kz` для автоматизации процессов.',
+            'Принимал merge‑запросы в Git, решал конфликты.',
+            'Socket.io: онлайн‑очередь для студентов в реальном времени.',
+          ],
+        },
+        {
+          company: 'ТОО "КАЗГИСА"',
+          period: 'Ноябрь 2021 — Июнь 2022 (8 месяцев)',
+          role: 'Frontend‑разработчик',
+          bullets: [
+            'Вёрстка проекта `e-sqo.kz` по Figma и работа в админке.',
+            'Работа в админках: `e-jambyl.kz`, `geo-shym.kz`.',
+            'Технологии: Material UI, Angular, JavaScript, TypeScript.',
+            'Коммуникация с backend‑разработчиками, менеджерами и дизайнером.',
+          ],
+        },
+        {
+          company: 'ТОО "City Soft"',
+          period: 'Май 2020 — Ноябрь 2021 (1 год 7 месяцев)',
+          role: 'Frontend‑разработчик',
+          bullets: [
+            'Вёрстка интерфейсов.',
+            'Интеграция с API.',
+            'Поддержка и исправление багов.',
+            'Работа с Git.',
+            'Работа с UI‑библиотеками.',
+            'Тестирование интерфейса.',
+          ],
+        },
+      ],
+    },
+    skills: {
+      title: 'Навыки',
+      techTitle: 'Технологии',
+      tech: ['JavaScript', 'TypeScript', 'Vue 3', 'Nuxt 3', 'Angular', 'HTML5', 'CSS3', 'Git'],
+      langsTitle: 'Языки',
+      langs: ['Казахский — родной', 'Английский — A2', 'Русский — B1'],
+    },
+    education: {
+      title: 'Образование',
+      items: [
+        {
+          degree: 'Магистр (2020)',
+          place: 'Евразийский национальный университет имени Л. Н. Гумилёва, Астана',
+          program: 'ФИТ, Информатика',
+        },
+        {
+          degree: 'Бакалавр (2018)',
+          place: 'Евразийский национальный университет имени Л. Н. Гумилёва, Астана',
+          program: 'ФИТ, Информатика',
+        },
+      ],
+    },
+    contacts: {
+      title: 'Контакты',
+      phone: 'Телефон',
+      email: 'Email',
+      telegram: 'Telegram',
+      location: 'Город',
+    },
+  },
+
+  en: {
+    nav: {
+      home: 'Home',
+      about: 'About',
+      experience: 'Experience',
+      skills: 'Skills',
+      education: 'Education',
+      contacts: 'Contacts',
+    },
+    common: {
+      theme: 'Theme',
+      language: 'Language',
+      light: 'Light',
+      dark: 'Dark',
+      downloadPdf: 'Download resume (PDF)',
+      openSite: 'Open site',
+    },
+    home: {
+      title: 'Andakov Dilmukhan',
+      role: 'Frontend Developer',
+      lead:
+        'Frontend developer with 5+ years of experience building Vue/Nuxt web apps. Worked on 20+ projects and can design frontend architecture.',
+      quick: {
+        locationLabel: 'Location',
+        location: 'Astana, Kazakhstan',
+        statusLabel: 'Status',
+        ready: 'Open to relocation and business trips',
+      },
+      projects: {
+        title: 'Selected work',
+        lead: 'A few live projects. Click a card to open the website.',
+        items: [
+          {
+            title: 'ENU — main website',
+            subtitle: 'Responsive UI, dynamic pages',
+            tags: ['Vue', 'Nuxt', 'PrimeVue'],
+            href: 'https://enu.kz/kz',
+            bg: '/44.jpg',
+          },
+          {
+            title: 'ENU Library',
+            subtitle: 'Analytics integration, maintenance',
+            tags: ['Vue', 'Nuxt'],
+            href: 'https://lib.enu.kz/kz',
+            bg: '/55.jpg',
+          },
+          {
+            title: 'e-SQO',
+            subtitle: 'Figma implementation + admin panel',
+            tags: ['Angular', 'TypeScript'],
+            href: 'https://e-sqo.kz',
+            bg: '/66.jpg',
+          },
+          {
+            title: 'Geo Shymkent',
+            subtitle: 'Admin panel and support',
+            tags: ['Angular', 'Material UI'],
+            href: 'https://geo-shym.kz',
+            bg: '/77.jpg',
+          },
+        ],
+      },
+    },
+    about: {
+      title: 'About',
+      lead:
+        'I build fast, polished interfaces and ship stable releases—from pixel-perfect Figma layouts to API integration and long-term support.',
+      factsTitle: 'Quick facts',
+      facts: {
+        age: '29 years old (May 1, 1996)',
+        citizenship: 'Citizenship: Kazakhstan',
+        format: 'Work format: on-site / remote',
+      },
+    },
+    experience: {
+      title: 'Experience',
+      items: [
+        {
+          company: 'L.N. Gumilyov Eurasian National University',
+          period: 'Nov 2022 — Present',
+          role: 'Frontend Developer',
+          bullets: [
+            'Built `enu.kz/kz` from scratch, responsive UI from Figma.',
+            '~3000 dynamic pages.',
+            'Maintained 16 faculty sub-sites and other products.',
+            'Added Yandex.Metrika to `lib.enu.kz/kz`.',
+            'Tech: PrimeVue, Vue 3, Nuxt 3, JavaScript.',
+            'Worked on `smart.enu.kz` digital platform.',
+            'Reviewed merge requests, resolved conflicts.',
+            'Socket.io real-time student queue.',
+          ],
+        },
+        {
+          company: 'KAZGISA LLC',
+          period: 'Nov 2021 — Jun 2022',
+          role: 'Frontend Developer',
+          bullets: [
+            'Implemented `e-sqo.kz` UI from Figma; worked on admin panel.',
+            'Admin panels: `e-jambyl.kz`, `geo-shym.kz`.',
+            'Tech: Material UI, Angular, JavaScript, TypeScript.',
+            'Worked closely with backend, PM and designer.',
+          ],
+        },
+        {
+          company: 'City Soft LLC',
+          period: 'May 2020 — Nov 2021',
+          role: 'Frontend Developer',
+          bullets: [
+            'UI development and layout.',
+            'API integration.',
+            'Bug fixing and maintenance.',
+            'Git workflow.',
+            'Worked with UI libraries.',
+            'UI testing.',
+          ],
+        },
+      ],
+    },
+    skills: {
+      title: 'Skills',
+      techTitle: 'Technologies',
+      tech: ['JavaScript', 'TypeScript', 'Vue 3', 'Nuxt 3', 'Angular', 'HTML5', 'CSS3', 'Git'],
+      langsTitle: 'Languages',
+      langs: ['Kazakh — native', 'English — A2', 'Russian — B1'],
+    },
+    education: {
+      title: 'Education',
+      items: [
+        {
+          degree: "Master's (2020)",
+          place: 'L.N. Gumilyov Eurasian National University, Astana',
+          program: 'IT Faculty, Computer Science',
+        },
+        {
+          degree: "Bachelor's (2018)",
+          place: 'L.N. Gumilyov Eurasian National University, Astana',
+          program: 'IT Faculty, Computer Science',
+        },
+      ],
+    },
+    contacts: {
+      title: 'Contacts',
+      phone: 'Phone',
+      email: 'Email',
+      telegram: 'Telegram',
+      location: 'City',
+    },
+  },
+
+  kk: {
+    nav: {
+      home: 'Басты бет',
+      about: 'Өзім туралы',
+      experience: 'Тәжірибе',
+      skills: 'Дағдылар',
+      education: 'Білім',
+      contacts: 'Байланыс',
+    },
+    common: {
+      theme: 'Тақырып',
+      language: 'Тіл',
+      light: 'Жарық',
+      dark: 'Қараңғы',
+      downloadPdf: 'Түйіндеме (PDF) жүктеу',
+      openSite: 'Сайтты ашу',
+    },
+    home: {
+      title: 'Andakov Dilmukhan',
+      role: 'Frontend әзірлеуші',
+      lead:
+        'Vue, JavaScript және Nuxt бойынша 5+ жыл тәжірибесі бар фронтенд әзірлеуші. 20+ жобада қатыстым, фронтенд архитектурасын жобалай аламын.',
+      quick: {
+        locationLabel: 'Қала',
+        location: 'Астана, Қазақстан',
+        statusLabel: 'Статус',
+        ready: 'Көшуге және іссапарға дайын',
+      },
+      projects: {
+        title: 'Жобалар',
+        lead: 'Бірнеше дайын жоба. Карточканы бассаңыз — сайт ашылады.',
+        items: [
+          {
+            title: 'ENU — негізгі сайт',
+            subtitle: 'Адаптивті верстка, динамикалық беттер',
+            tags: ['Vue', 'Nuxt', 'PrimeVue'],
+            href: 'https://enu.kz/kz',
+            bg: '/44.jpg',
+          },
+          {
+            title: 'ENU кітапханасы',
+            subtitle: 'Аналитика қосу, қолдау және дамыту',
+            tags: ['Vue', 'Nuxt'],
+            href: 'https://lib.enu.kz/kz',
+            bg: '/55.jpg',
+          },
+          {
+            title: 'e-SQO',
+            subtitle: 'Figma бойынша интерфейс + админка',
+            tags: ['Angular', 'TypeScript'],
+            href: 'https://e-sqo.kz',
+            bg: '/66.jpg',
+          },
+          {
+            title: 'Geo Shymkent',
+            subtitle: 'Админка және қолдау',
+            tags: ['Angular', 'Material UI'],
+            href: 'https://geo-shym.kz',
+            bg: '/77.jpg',
+          },
+        ],
+      },
+    },
+    about: {
+      title: 'Өзім туралы',
+      lead:
+        'Жылдам әрі ұқыпты интерфейстер жасаймын: Figma бойынша версткадан бастап API интеграциясы мен қолдауға дейін.',
+      factsTitle: 'Қысқаша',
+      facts: {
+        age: '29 жас (01.05.1996)',
+        citizenship: 'Азаматтығы: Қазақстан',
+        format: 'Формат: офис / қашықтан',
+      },
+    },
+    experience: {
+      title: 'Жұмыс тәжірибесі',
+      items: [
+        {
+          company: 'Л.Н. Гумилев атындағы Еуразия ұлттық университеті',
+          period: '2022 Қараша — қазіргі уақытқа дейін',
+          role: 'Frontend әзірлеуші',
+          bullets: [
+            '`enu.kz/kz` сайтын нөлден жасауға қатыстым, Figma бойынша адаптивті верстка.',
+            'Шамамен 3000 динамикалық бет.',
+            'ЕНУ-дың 16 факультет сайты және басқа өнімдерді қолдау.',
+            '`lib.enu.kz/kz` сайтына Яндекс.Метрика қостым.',
+            'Технологиялар: PrimeVue, Vue 3, Nuxt 3, JavaScript.',
+            '`smart.enu.kz` платформасында жұмыс.',
+            'Git-та merge сұраныстарын қабылдау, конфликттерді шешу.',
+            'Socket.io: студенттер үшін онлайн кезек (real-time).',
+          ],
+        },
+        {
+          company: '«КАЗГИСА» ЖШС',
+          period: '2021 Қараша — 2022 Маусым',
+          role: 'Frontend әзірлеуші',
+          bullets: [
+            '`e-sqo.kz` жобасын Figma бойынша верстка, админкада жұмыс.',
+            'Админкалар: `e-jambyl.kz`, `geo-shym.kz`.',
+            'Технологиялар: Material UI, Angular, JavaScript, TypeScript.',
+            'Backend, PM және дизайнермен бірге жұмыс.',
+          ],
+        },
+        {
+          company: '«City Soft» ЖШС',
+          period: '2020 Мамыр — 2021 Қараша',
+          role: 'Frontend әзірлеуші',
+          bullets: [
+            'Интерфейс версткасы.',
+            'API интеграциясы.',
+            'Багтарды түзету және қолдау.',
+            'Git.',
+            'UI кітапханаларымен жұмыс.',
+            'Интерфейсті тестілеу.',
+          ],
+        },
+      ],
+    },
+    skills: {
+      title: 'Дағдылар',
+      techTitle: 'Технологиялар',
+      tech: ['JavaScript', 'TypeScript', 'Vue 3', 'Nuxt 3', 'Angular', 'HTML5', 'CSS3', 'Git'],
+      langsTitle: 'Тілдер',
+      langs: ['Қазақ тілі — ана тілі', 'Ағылшын — A2', 'Орыс — B1'],
+    },
+    education: {
+      title: 'Білім',
+      items: [
+        {
+          degree: 'Магистр (2020)',
+          place: 'Л.Н. Гумилев атындағы Еуразия ұлттық университеті, Астана',
+          program: 'ФИТ, Информатика',
+        },
+        {
+          degree: 'Бакалавр (2018)',
+          place: 'Л.Н. Гумилев атындағы Еуразия ұлттық университеті, Астана',
+          program: 'ФИТ, Информатика',
+        },
+      ],
+    },
+    contacts: {
+      title: 'Байланыс',
+      phone: 'Телефон',
+      email: 'Email',
+      telegram: 'Telegram',
+      location: 'Қала',
+    },
+  },
+} as const
+
