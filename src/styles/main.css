@@ -3,7 +3,8 @@
 :root {
   color-scheme: light;
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans",
+  /* Onest: Latin + Cyrillic incl. Kazakh (ғ, қ, ң, ө, ұ, ү, һ, і, ә); loaded in index.html */
+  --font-sans: "Onest", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans",
     "Liberation Sans", sans-serif;
 
   --bg: #ffffff;

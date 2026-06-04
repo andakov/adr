@@ -6,14 +6,10 @@ function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme
 }
 
-function getSystemTheme(): Theme {
-  return window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light'
-}
-
 export function getInitialTheme(): Theme {
   const saved = localStorage.getItem(STORAGE_KEY)
   if (saved === 'light' || saved === 'dark') return saved
-  return getSystemTheme()
+  return 'dark'
 }
 
 function prefersReducedMotion(): boolean {

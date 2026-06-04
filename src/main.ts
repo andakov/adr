@@ -6,8 +6,10 @@ import { i18n } from './i18n'
 import './styles/main.css'
 import { initTheme } from './theme'
 import { initLocale } from './locale'
+import { hideInitialSplash } from './utils/hideInitialSplash'
 
 initTheme()
 initLocale(i18n)
 
 createApp(App).use(router).use(i18n).mount('#app')
+void hideInitialSplash()

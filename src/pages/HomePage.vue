@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import ExperienceBullet from '../components/ExperienceBullet.vue'
 import { messages } from '../i18n/messages'
 
 const { t, locale } = useI18n({ useScope: 'global' })
@@ -14,8 +15,42 @@ type Project = {
   bg?: string
 }
 
+type ExperienceItem = {
+  company: string
+  period: string
+  role: string
+  bullets: readonly string[]
+}
+
 const heroImg = '/44.jpg'
+const experienceItems = computed(
+  () => (m.value.experience.items ?? []) as ReadonlyArray<ExperienceItem>,
+)
 const projects = computed(() => (m.value.home.projects?.items ?? []) as ReadonlyArray<Project>)
+
+/** Simple Icons CDN slugs — order matches `skills.tech` in i18n messages */
+const SKILL_ICON_SLUGS = [
+  'javascript',
+  'typescript',
+  'vuedotjs',
+  'nuxt',
+  'angular',
+  'html5',
+  'css',
+  'git',
+  'primevue',
+  'materialdesign',
+  'vite',
+  'socketdotio',
+] as const
+
+const skillTiles = computed(() => {
+  const labels = m.value.skills.tech as readonly string[]
+  return labels.map((name, i) => {
+    const slug = SKILL_ICON_SLUGS[i] ?? 'javascript'
+    return { name, slug, icon: `https://cdn.simpleicons.org/${slug}` }
+  })
+})
 </script>
 
 <template>
@@ -64,21 +99,31 @@ const projects = computed(() => (m.value.home.projects?.items ?? []) as Readonly
 
   <div style="height: 18px" />
 
+  <section class="glass experience-home" aria-labelledby="home-experience-heading">
+    <div class="experience-head">
+      <h2 id="home-experience-heading" class="experience-title">{{ t('experience.title') }}</h2>
+    </div>
+    <div class="experience-body">
+      <article v-for="it in experienceItems" :key="it.company" class="job">
+        <div class="job-head">
+          <div class="job-company">{{ it.company }}</div>
+          <div class="job-meta">{{ it.role }} • {{ it.period }}</div>
+        </div>
+        <ul class="list">
+          <li v-for="(b, bi) in it.bullets" :key="`${it.company}-${bi}`">
+            <ExperienceBullet :text="b" />
+          </li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <div style="height: 18px" />
+
   <section class="glass projects">
     <div class="projects-head">
       <div>
         <p class="section-title" style="margin: 0">{{ t('home.projects.title') }}</p>
-        <p class="lead" style="margin: 6px 0 0">{{ t('home.projects.lead') }}</p>
-      </div>
-      <div class="projects-quick">
-        <div class="kv" style="margin: 0">
-          <div class="kv-key">{{ t('home.quick.locationLabel') }}</div>
-          <div class="kv-val">{{ m.home.quick.location }}</div>
-        </div>
-        <div class="kv" style="margin: 0">
-          <div class="kv-key">{{ t('home.quick.statusLabel') }}</div>
-          <div class="kv-val">{{ m.home.quick.ready }}</div>
-        </div>
       </div>
     </div>
 
@@ -92,29 +137,53 @@ const projects = computed(() => (m.value.home.projects?.items ?? []) as Readonly
         rel="noopener"
         :style="p.bg ? { '--bg': `url(${p.bg})` } : undefined"
       >
-        <div class="card-bg" aria-hidden="true" />
-        <div class="card-overlay" aria-hidden="true" />
+        <div class="card-media">
+          <div class="card-bg" aria-hidden="true" />
+          <div class="card-overlay" aria-hidden="true" />
+        </div>
         <div class="card-body">
-          <div class="card-top">
-            <div class="card-title">{{ p.title }}</div>
-            <div v-if="p.subtitle" class="card-sub">{{ p.subtitle }}</div>
-          </div>
-          <div v-if="p.tags?.length" class="card-tags">
-            <span v-for="tag in p.tags" :key="tag" class="chip">{{ tag }}</span>
-          </div>
-          <div class="card-cta">
-            <span class="btn btn-primary btn-sm">{{ t('common.openSite') }}</span>
+          <div class="card-bottom">
+            <div class="card-text">
+              <div class="card-top">
+                <div class="card-title">{{ p.title }}</div>
+                <div v-if="p.subtitle" class="card-sub">{{ p.subtitle }}</div>
+              </div>
+              <div v-if="p.tags?.length" class="card-tags">
+                <span v-for="tag in p.tags" :key="tag" class="chip">{{ tag }}</span>
+              </div>
+            </div>
+            <div class="card-cta">
+              <span class="btn btn-primary btn-sm">{{ t('common.openSite') }}</span>
+            </div>
           </div>
         </div>
       </a>
     </div>
+  </section>
 
-    <div class="more">
-      <RouterLink class="btn" to="/about">{{ t('nav.about') }}</RouterLink>
-      <RouterLink class="btn" to="/experience">{{ t('nav.experience') }}</RouterLink>
-      <RouterLink class="btn" to="/skills">{{ t('nav.skills') }}</RouterLink>
-      <RouterLink class="btn" to="/contacts">{{ t('nav.contacts') }}</RouterLink>
+  <div style="height: 18px" />
+
+  <section class="glass skills" aria-labelledby="home-skills-heading">
+    <div class="skills-head">
+      <div>
+        <h2 id="home-skills-heading" class="skills-title">{{ t('skills.title') }}</h2>
+        <p class="skills-sub">{{ t('skills.techTitle') }}</p>
+      </div>
     </div>
+    <ul class="skills-grid">
+      <li v-for="tile in skillTiles" :key="tile.slug" class="skill-tile">
+        <img
+          class="skill-icon"
+          :src="tile.icon"
+          alt=""
+          width="28"
+          height="28"
+          loading="lazy"
+          decoding="async"
+        />
+        <span class="skill-name">{{ tile.name }}</span>
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -298,6 +367,60 @@ html[data-theme='dark'] .hero-right-fade {
   margin-top: 18px;
 }
 
+.experience-home {
+  padding: 18px;
+  border-radius: var(--radius);
+}
+
+.experience-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.experience-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.experience-body {
+  margin-top: 14px;
+}
+
+.experience-home .job {
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+}
+
+.experience-home .job:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.experience-home .job-company {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.experience-home .job-meta {
+  color: var(--muted);
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.experience-home .list {
+  margin-top: 10px;
+  line-height: 1.65;
+  font-size: 14px;
+}
+
 .projects {
   padding: 18px;
   border-radius: var(--radius);
@@ -329,15 +452,29 @@ html[data-theme='dark'] .hero-right-fade {
   overflow: hidden;
   border-radius: 18px;
   border: 1px solid var(--border);
-  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
   grid-column: span 6;
   text-decoration: none;
   color: inherit;
+  height: 100%;
 }
 
 .card:hover {
   transform: translateY(-1px);
   border-color: rgba(99, 91, 255, 0.35);
+}
+
+.card-media {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 120px;
+  max-height: 240px;
+  overflow: hidden;
+  background: var(--border);
 }
 
 .card-bg {
@@ -353,11 +490,11 @@ html[data-theme='dark'] .hero-right-fade {
 .card-overlay {
   position: absolute;
   inset: 0;
+  pointer-events: none;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.0) 0%,
-    rgba(0, 0, 0, 0.35) 42%,
-    rgba(0, 0, 0, 0.72) 100%
+    rgba(0, 0, 0, 0.18) 100%
   );
 }
 
@@ -365,18 +502,34 @@ html[data-theme='light'] .card-overlay {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.0) 0%,
-    rgba(255, 255, 255, 0.45) 45%,
-    rgba(255, 255, 255, 0.92) 100%
+    rgba(255, 255, 255, 0.22) 100%
   );
 }
 
 .card-body {
   position: relative;
-  height: 100%;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  min-height: 0;
+  padding: 14px 16px 16px;
+  background: var(--card-solid);
+  border-top: 1px solid var(--border);
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
   justify-content: space-between;
-  padding: 16px;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.card-text {
+  flex: 1;
+  min-width: 0;
 }
 
 .card-title {
@@ -402,22 +555,22 @@ html[data-theme='light'] .card-overlay {
 .chip {
   padding: 6px 8px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
   font-weight: 900;
   font-size: 11px;
   letter-spacing: 0.02em;
 }
 
 html[data-theme='light'] .chip {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .card-cta {
   display: flex;
-  justify-content: flex-start;
-  margin-top: 14px;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  margin-top: 0;
 }
 
 .btn-sm {
@@ -432,6 +585,82 @@ html[data-theme='light'] .chip {
   margin-top: 16px;
   padding-top: 16px;
   border-top: 1px solid var(--border);
+}
+
+.skills {
+  padding: 18px;
+  border-radius: var(--radius);
+}
+
+.skills-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.skills-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.skills-sub {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.skills-grid {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 12px;
+}
+
+.skill-tile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.45);
+  transition: transform 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+}
+
+html[data-theme='dark'] .skill-tile {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.skill-tile:hover {
+  transform: translateY(-1px);
+  border-color: rgba(99, 91, 255, 0.35);
+  box-shadow: 0 10px 28px rgba(2, 6, 23, 0.12);
+}
+
+html[data-theme='dark'] .skill-tile:hover {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+.skill-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.skill-name {
+  font-weight: 850;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
 }
 
 @media (max-width: 920px) {
@@ -453,6 +682,9 @@ html[data-theme='light'] .chip {
   }
   .card {
     grid-column: span 12;
+  }
+  .skills-grid {
+    grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
   }
 }
 </style>

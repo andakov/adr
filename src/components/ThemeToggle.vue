@@ -2,7 +2,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { getInitialTheme, setTheme, type Theme } from '../theme'
 
-const theme = ref<Theme>('light')
+const theme = ref<Theme>('dark')
 const animating = ref(false)
 
 onMounted(() => {

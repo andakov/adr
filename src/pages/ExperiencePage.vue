@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import ExperienceBullet from '../components/ExperienceBullet.vue'
 import { messages } from '../i18n/messages'
 
 type ExperienceItem = {
@@ -36,7 +37,9 @@ const items = computed(() => (m.value.experience.items ?? []) as ReadonlyArray<E
           </div>
         </div>
         <ul class="list">
-          <li v-for="b in it.bullets" :key="b">{{ b }}</li>
+          <li v-for="(b, bi) in it.bullets" :key="`${it.company}-${bi}`">
+            <ExperienceBullet :text="b" />
+          </li>
         </ul>
       </article>
     </div>
