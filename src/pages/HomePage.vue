@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ExperienceBullet from '../components/ExperienceBullet.vue'
 import { messages } from '../i18n/messages'
+import { assetUrl } from '../utils/assetUrl'
 
 const { t, locale } = useI18n({ useScope: 'global' })
 const m = computed(() => messages[locale.value as keyof typeof messages])
@@ -22,7 +23,7 @@ type ExperienceItem = {
   bullets: readonly string[]
 }
 
-const heroImg = '/44.jpg'
+const heroImg = assetUrl('/44.jpg')
 const experienceItems = computed(
   () => (m.value.experience.items ?? []) as ReadonlyArray<ExperienceItem>,
 )

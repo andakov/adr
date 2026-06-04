@@ -4,10 +4,11 @@ import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import ThemeToggle from './ThemeToggle.vue'
 import LanguageSwitch from './LanguageSwitch.vue'
+import { assetUrl } from '../utils/assetUrl'
 
 const route = useRoute()
 const { t, locale } = useI18n({ useScope: 'global' })
-const photoUrl = '/logo.png'
+const photoUrl = assetUrl('/logo.png')
 
 const nav = computed(() => {
   // touch locale so labels update when language changes
