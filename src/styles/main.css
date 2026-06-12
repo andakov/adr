@@ -60,6 +60,10 @@ body {
   margin: 0;
   font-family: var(--font-sans);
   color: var(--fg);
+  background: var(--bg);
+}
+
+html[data-theme='dark'] body {
   background: radial-gradient(1200px 800px at 30% 10%, rgba(99, 91, 255, 0.25), transparent 60%),
     radial-gradient(900px 600px at 75% 25%, rgba(34, 197, 94, 0.18), transparent 55%),
     radial-gradient(1000px 700px at 40% 90%, rgba(56, 189, 248, 0.10), transparent 60%),

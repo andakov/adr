@@ -3,7 +3,7 @@ import { messages } from './messages'
 
 export const i18n = createI18n({
   legacy: false,
-  locale: 'en',
+  locale: 'kk',
   fallbackLocale: 'en',
   messages,
 })

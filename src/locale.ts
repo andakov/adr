@@ -9,7 +9,7 @@ export function getInitialLocale(): Locale {
   const nav = (navigator.language || '').toLowerCase()
   if (nav.startsWith('kk') || nav.startsWith('kz')) return 'kk'
   if (nav.startsWith('ru')) return 'ru'
-  return 'en'
+  return 'kk'
 }
 
 export function setLocale(i18n: any, locale: Locale) {

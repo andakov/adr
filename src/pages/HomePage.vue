@@ -59,26 +59,18 @@ const skillTiles = computed(() => {
   <div class="hero-stage">
     <section class="hero glass">
       <div class="hero-bg" />
-      <div class="hero-overlay" />
+      <div class="hero-overlay">
+        <div class="hero-inner">
+          <h1 class="hero-title">{{ t('home.title') }}</h1>
+          <p class="hero-lead">
+            <strong>{{ t('home.role') }}</strong>
+            <span> — {{ t('home.lead') }}</span>
+          </p>
+        </div>
+      </div>
       <div class="hero-right" aria-hidden="true">
         <img class="hero-right-img" :src="heroImg" alt="" />
         <div class="hero-right-fade" />
-      </div>
-      <div class="hero-inner">
-        <div class="pill">Portfolio • Vue 3 • Vite</div>
-        <div style="height: 12px" />
-        <h1 class="hero-title">{{ t('home.title') }}</h1>
-        <p class="hero-lead">
-          <strong>{{ t('home.role') }}</strong>
-          <span> — {{ t('home.lead') }}</span>
-        </p>
-
-        <div class="cta">
-          <a class="btn btn-primary" href="/resume.pdf" target="_blank" rel="noopener">
-            {{ t('common.downloadPdf') }}
-          </a>
-          <RouterLink class="btn" to="/contacts">{{ t('nav.contacts') }}</RouterLink>
-        </div>
       </div>
     </section>
 
@@ -213,11 +205,17 @@ const skillTiles = computed(() => {
 .hero-overlay {
   position: absolute;
   inset: 0;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  /* keep title + lead in the left column, clear of hero-right image */
+  padding-right: min(560px, 44%);
   background: linear-gradient(
     90deg,
     rgba(5, 8, 22, 0.90) 0%,
-    rgba(5, 8, 22, 0.55) 40%,
-    rgba(5, 8, 22, 0.15) 70%,
+    rgba(5, 8, 22, 0.72) 38%,
+    rgba(5, 8, 22, 0.35) 52%,
+    rgba(5, 8, 22, 0.08) 62%,
     rgba(5, 8, 22, 0.00) 100%
   );
 }
@@ -235,7 +233,9 @@ html[data-theme='light'] .hero-overlay {
 .hero-inner {
   position: relative;
   padding: 28px;
-  max-width: 720px;
+  width: 100%;
+  max-width: min(720px, 100%);
+  box-sizing: border-box;
 }
 
 .scroll-hint {
@@ -312,6 +312,7 @@ html[data-theme='light'] .scroll-hint {
   right: 0;
   bottom: 0;
   top: 0;
+  z-index: 0;
   width: min(560px, 44%);
   pointer-events: none;
 }
@@ -665,15 +666,8 @@ html[data-theme='dark'] .skill-tile:hover {
 }
 
 @media (max-width: 920px) {
-  .hero {
-    min-height: 420px;
-  }
   .hero-title {
     font-size: 40px;
-  }
-  .hero-right {
-    width: 55%;
-    opacity: 0.9;
   }
   .scroll-hint {
     padding: 10px 0 6px;
@@ -686,6 +680,89 @@ html[data-theme='dark'] .skill-tile:hover {
   }
   .skills-grid {
     grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  }
+}
+
+/* Mobile hero: stack image above text — no overlap */
+@media (max-width: 768px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .hero-bg {
+    display: none;
+  }
+
+  .hero-right {
+    position: relative;
+    order: -1;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: clamp(320px, 48vw, 260px);
+    flex-shrink: 0;
+    opacity: 1;
+  }
+
+  .hero-right-img {
+    object-position: center 20%;
+  }
+
+  .hero-right-fade {
+    opacity: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(5, 8, 22, 0) 35%,
+      var(--card-solid) 100%
+    );
+  }
+
+  html[data-theme='light'] .hero-right-fade {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 35%,
+      var(--card-solid) 100%
+    );
+  }
+
+  .hero-overlay {
+    position: relative;
+    inset: auto;
+    flex: 1;
+    align-items: flex-start;
+    padding-right: 0;
+    background: var(--card-solid);
+  }
+
+  html[data-theme='light'] .hero-overlay,
+  html[data-theme='dark'] .hero-overlay {
+    background: var(--card-solid);
+  }
+
+  .hero-inner {
+    padding: 4px 20px 24px;
+    max-width: none;
+    width: 100%;
+  }
+
+  .hero-title {
+    font-size: clamp(28px, 7.5vw, 36px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-lead {
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 1.55;
+    max-width: 42ch;
+  }
+
+  .hero-stage {
+    min-height: auto;
   }
 }
 </style>
